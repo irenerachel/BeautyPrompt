@@ -26,10 +26,10 @@ const CategoryTab: React.FC<CategoryTabProps> = ({ category, isActive, onClick }
 
   return (
     <button
-      className={`px-6 py-3 rounded-t-lg font-medium transition-all duration-200 whitespace-nowrap flex items-center gap-2 ${
+      className={`px-6 py-3 rounded-t-lg font-medium transition-all duration-200 whitespace-nowrap flex items-center gap-2 border ${
         isActive
-          ? 'bg-white text-primary-600 border-b-2 border-primary-500 shadow-sm'
-          : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800'
+          ? 'bg-white text-primary-600 border-b-2 border-primary-500 shadow-md border-gray-200'
+          : 'bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-900 border-gray-200 shadow-sm hover:shadow-md'
       }`}
       onClick={onClick}
     >
