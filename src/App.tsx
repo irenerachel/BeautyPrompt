@@ -93,14 +93,37 @@ const App: React.FC = () => {
   const allPromptsArray = [...customPrompts, ...selectedPhrasesArray];
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-48">
+    <div className="min-h-screen bg-gray-50 pb-32 sm:pb-48">
       {/* 头部 */}
       <Header />
       
       {/* 工具栏 */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          {/* 移动端：垂直布局 */}
+          <div className="md:hidden py-3">
+            <div className="flex items-center justify-center mb-2">
+              <span className="text-sm text-gray-600">
+                已选择 <span className="font-semibold text-primary-600">{allPromptsArray.length}</span> 个提示词
+              </span>
+            </div>
+            {customPrompts.length > 0 && (
+              <div className="flex items-center justify-center mb-2">
+                <span className="text-xs text-gray-500">
+                  (自定义: {customPrompts.length}, 预设: {selectedPhrases.size})
+                </span>
+              </div>
+            )}
+            <div className="flex items-center justify-center">
+              <FavoritesManager
+                selectedPhrases={allPromptsArray}
+                onLoadFavorite={handleLoadFavorite}
+              />
+            </div>
+          </div>
+          
+          {/* 桌面端：水平布局 */}
+          <div className="hidden md:flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
                 已选择 <span className="font-semibold text-primary-600">{allPromptsArray.length}</span> 个提示词
@@ -122,7 +145,7 @@ const App: React.FC = () => {
       </div>
 
       {/* 主要内容 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* 自定义提示词输入区域 */}
         <CustomPromptInput 
           customPrompts={customPrompts}
@@ -133,7 +156,7 @@ const App: React.FC = () => {
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
         {/* 分类标签 */}
-        <div className="mb-8">
+        <div className="mb-4 sm:mb-8">
           <div className="flex overflow-x-auto pb-2 space-x-1">
             {filteredCategories.map((category, index) => (
               <CategoryTab
@@ -148,7 +171,7 @@ const App: React.FC = () => {
 
         {/* 内容区域 */}
         {activeCategory ? (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {activeCategory.subCategories.map((subCategory) => (
               <SubCategoryCard
                 key={subCategory.name}
@@ -159,8 +182,8 @@ const App: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <div className="text-gray-500 text-lg">
+          <div className="text-center py-8 sm:py-12">
+            <div className="text-gray-500 text-base sm:text-lg">
               没有找到匹配的提示词
             </div>
           </div>

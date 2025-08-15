@@ -35,15 +35,29 @@ ${selectedPhrases.join(', ')}`;
   };
 
   return (
-    <button
-      onClick={handleExport}
-      disabled={selectedPhrases.length === 0}
-      className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-      title="导出为txt文件"
-    >
-      <Download size={16} />
-      导出txt
-    </button>
+    <>
+      {/* 移动端：小按钮 */}
+      <button
+        onClick={handleExport}
+        disabled={selectedPhrases.length === 0}
+        className="md:hidden btn-secondary flex items-center gap-1 text-xs px-2 py-1 disabled:opacity-50 disabled:cursor-not-allowed flex-1"
+        title="导出为txt文件"
+      >
+        <Download size={14} />
+        导出
+      </button>
+      
+      {/* 桌面端：正常按钮 */}
+      <button
+        onClick={handleExport}
+        disabled={selectedPhrases.length === 0}
+        className="hidden md:flex btn-secondary items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        title="导出为txt文件"
+      >
+        <Download size={16} />
+        导出txt
+      </button>
+    </>
   );
 };
 

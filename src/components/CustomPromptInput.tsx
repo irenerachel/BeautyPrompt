@@ -56,23 +56,23 @@ const CustomPromptInput: React.FC<CustomPromptInputProps> = ({
           <label className="block text-sm font-medium text-gray-700">
             添加自定义提示词
           </label>
-          <div className="flex space-x-2">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="输入您想要的自定义提示词，如：美丽的女孩、梦幻场景等"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-            />
-            <button
-              onClick={handleAddPrompt}
-              disabled={!inputValue.trim()}
-              className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <Plus size={16} />
-            </button>
-          </div>
+                      <div className="flex space-x-2">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="输入您想要的自定义提示词，如：美丽的女孩、梦幻场景等"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              />
+              <button
+                onClick={handleAddPrompt}
+                disabled={!inputValue.trim()}
+                className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <Plus size={16} />
+              </button>
+            </div>
           <p className="text-xs text-gray-500">
             💡 提示：可以填写主语、场景描述、风格要求等，按回车键快速添加
           </p>
