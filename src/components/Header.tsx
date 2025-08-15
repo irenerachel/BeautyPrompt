@@ -53,7 +53,7 @@ const Header: React.FC = () => {
             </div>
             
             <div className="text-center text-xs text-primary-100">
-              <p>🎨 专为AI绘图设计的提示词工具，可视化界面快速组合提示词，提升创作效率</p>
+              <p>🎨 AI绘图提示词工具，可视化界面快速组合提示词，效率UPUP！</p>
             </div>
           </div>
           
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center space-x-6 text-sm text-primary-100">
                   <div className="flex items-center space-x-2">
                     <Palette className="h-4 w-4" />
-                    <span>1374+ 精选提示词</span>
+                    <span>2000+ 精选提示词</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Camera className="h-4 w-4" />
@@ -117,7 +117,7 @@ const Header: React.FC = () => {
             </div>
             
             <div className="mt-4 text-sm text-primary-100">
-              <p>🎨 专为AI绘图设计的提示词工具，可视化界面快速组合提示词，提升创作效率</p>
+              <p>🎨 AI绘图提示词工具，可视化界面快速组合提示词，效率UPUP！</p>
             </div>
           </div>
         </div>
