@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer;
+  }
+  
+  .chip-unselected {
+    @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-primary-300;
+  }
+  
+  .chip-selected {
+    @apply bg-primary-500 border border-primary-500 text-white hover:bg-primary-600;
+  }
+}
