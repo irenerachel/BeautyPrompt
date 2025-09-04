@@ -1,6 +1,6 @@
 {
   "name": "ai-prompt-selector",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AI提示词可视化选择器网站",
   "private": true,
   "scripts": {
