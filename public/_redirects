@@ -1,1 +1,8 @@
+# 静态资源不重定向
+/assets/*  /assets/:splat  200
+/images/*  /images/:splat  200
+/vite.svg  /vite.svg      200
+/test.html /test.html     200
+
+# SPA路由重定向
 /*    /index.html   200
