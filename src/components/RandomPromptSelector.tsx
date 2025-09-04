@@ -142,21 +142,23 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
       {/* 快速随机按钮 */}
       <button
         onClick={handleQuickRandom}
-        className="btn-primary flex items-center gap-2"
+        className="btn-primary flex items-center gap-2 relative overflow-hidden"
         title="快速随机选择20个提示词"
       >
-        <Shuffle size={16} />
-        随机选择
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 -translate-x-full hover:translate-x-full"></div>
+        <Shuffle size={16} className="relative z-10" />
+        <span className="relative z-10">随机选择</span>
       </button>
 
       {/* 高级随机按钮 */}
       <button
         onClick={() => setShowModal(true)}
-        className="btn-secondary flex items-center gap-2"
+        className="btn-secondary flex items-center gap-2 relative overflow-hidden"
         title="自定义随机选择设置"
       >
-        <Settings size={16} />
-        高级随机
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-20 transition-opacity duration-300 transform -skew-x-12 -translate-x-full hover:translate-x-full"></div>
+        <Settings size={16} className="relative z-10" />
+        <span className="relative z-10">高级随机</span>
       </button>
 
       {/* 随机选择设置模态框 */}
