@@ -15,7 +15,7 @@ try {
   document.getElementById('root')!.innerHTML = `
     <div style="padding: 20px; color: red; font-family: Arial, sans-serif;">
       <h1>应用加载错误</h1>
-      <p>错误信息: ${error.message}</p>
+      <p>错误信息: ${error instanceof Error ? error.message : String(error)}</p>
       <p>请检查浏览器控制台获取更多信息。</p>
     </div>
   `;
