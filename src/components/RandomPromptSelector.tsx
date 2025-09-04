@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shuffle, Settings, X, Plus, Minus } from 'lucide-react';
+import { Shuffle, Settings, X } from 'lucide-react';
 import { PromptData } from '../types';
 
 interface RandomPromptSelectorProps {
@@ -187,7 +187,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                     disabled={totalCount <= 1}
                     className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Minus size={16} />
+                    −
                   </button>
                   <div className="flex items-center justify-center w-16 h-8 bg-gray-100 rounded-lg text-sm font-medium">
                     {totalCount}
@@ -197,7 +197,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                     disabled={totalCount >= 30}
                     className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Plus size={16} />
+                    +
                   </button>
                 </div>
               </div>
@@ -227,7 +227,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                           disabled={categoryWeights[index] <= 0}
                           className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          <Minus size={12} />
+                          −
                         </button>
                         <div className="flex items-center justify-center w-8 h-6 bg-white border border-gray-300 rounded text-xs font-medium">
                           {categoryWeights[index]}
@@ -237,7 +237,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                           disabled={categoryWeights[index] >= 5}
                           className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          <Plus size={12} />
+                          +
                         </button>
                         {index === categoryWeights.length - 1 && (
                           <span className="text-xs text-primary-600 font-medium ml-1 hidden sm:inline">推荐</span>
