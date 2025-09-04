@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手机端测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; }
+        .error { background-color: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>手机端功能测试</h1>
+    
+    <div class="test" id="js-test">
+        <h3>JavaScript测试</h3>
+        <p id="js-result">测试中...</p>
+    </div>
+    
+    <div class="test" id="touch-test">
+        <h3>触摸测试</h3>
+        <button onclick="touchTest()">点击测试</button>
+        <p id="touch-result"></p>
+    </div>
+    
+    <div class="test" id="viewport-test">
+        <h3>视口测试</h3>
+        <p id="viewport-result"></p>
+    </div>
+
+    <script>
+        // JavaScript测试
+        try {
+            document.getElementById('js-result').innerHTML = '✅ JavaScript正常工作';
+            document.getElementById('js-test').className = 'test success';
+        } catch (e) {
+            document.getElementById('js-result').innerHTML = '❌ JavaScript错误: ' + e.message;
+            document.getElementById('js-test').className = 'test error';
+        }
+
+        // 触摸测试
+        function touchTest() {
+            document.getElementById('touch-result').innerHTML = '✅ 触摸事件正常';
+            document.getElementById('touch-test').className = 'test success';
+        }
+
+        // 视口测试
+        document.getElementById('viewport-result').innerHTML = 
+            '屏幕宽度: ' + window.innerWidth + 'px<br>' +
+            '屏幕高度: ' + window.innerHeight + 'px<br>' +
+            '设备像素比: ' + window.devicePixelRatio;
+    </script>
+</body>
+</html>

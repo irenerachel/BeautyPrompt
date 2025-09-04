@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单测试</title>
+</head>
+<body>
+    <h1>简单测试页面</h1>
+    <p>如果你能看到这个页面，说明基本功能正常。</p>
+    <p>时间: <span id="time"></span></p>
+    
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString();
+        
+        // 检查是否有错误
+        window.addEventListener('error', function(e) {
+            document.body.innerHTML += '<p style="color: red;">错误: ' + e.message + '</p>';
+        });
+    </script>
+</body>
+</html>
