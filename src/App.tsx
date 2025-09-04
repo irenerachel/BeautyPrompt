@@ -108,8 +108,27 @@ const App: React.FC = () => {
     setTimeout(() => setShowCopySuccess(false), 2000);
   };
 
+  // 排序函数：自定义提示词最前，主体分类第二优先级
+  const sortPromptsByCategory = (phrases: string[], customPrompts: string[] = []) => {
+    // 获取人物分类的所有提示词
+    const characterPhrases = new Set<string>();
+    promptData.categories[0]?.subCategories.forEach(subCategory => {
+      if (subCategory.name === "人物 (Character)") {
+        subCategory.phrases.forEach(phrase => characterPhrases.add(phrase));
+      }
+    });
+
+    // 分离三类提示词
+    const customPromptsInList = phrases.filter(phrase => customPrompts.includes(phrase));
+    const characterPrompts = phrases.filter(phrase => characterPhrases.has(phrase) && !customPrompts.includes(phrase));
+    const otherPrompts = phrases.filter(phrase => !characterPhrases.has(phrase) && !customPrompts.includes(phrase));
+
+    // 优先级顺序：自定义提示词 > 人物提示词 > 其他提示词
+    return [...customPromptsInList, ...characterPrompts, ...otherPrompts];
+  };
+
   const selectedPhrasesArray = Array.from(selectedPhrases);
-  const allPromptsArray = [...customPrompts, ...selectedPhrasesArray];
+  const allPromptsArray = sortPromptsByCategory([...customPrompts, ...selectedPhrasesArray], customPrompts);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-32 sm:pb-48">
