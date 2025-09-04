@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { promptData } from './data/generated-promptData';
+import { promptData } from './data/minimal-promptData';
 import CategoryTab from './components/CategoryTab';
 import SubCategoryCard from './components/SubCategoryCard';
 import PromptBar from './components/PromptBar';
