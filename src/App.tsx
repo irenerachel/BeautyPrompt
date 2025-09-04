@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { promptData } from './data/minimal-promptData';
+import { promptData } from './data/generated-promptData';
 import CategoryTab from './components/CategoryTab';
 import SubCategoryCard from './components/SubCategoryCard';
 import PromptBar from './components/PromptBar';
@@ -10,7 +10,7 @@ import FavoritesManager from './components/FavoritesManager';
 import Header from './components/Header';
 import QuickGuide from './components/QuickGuide';
 import CustomPromptInput from './components/CustomPromptInput';
-import RandomPromptSelector from './components/RandomPromptSelector';
+// import RandomPromptSelector from './components/RandomPromptSelector';
 
 const App: React.FC = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useLocalStorage('activeCategoryIndex', 0);
@@ -85,23 +85,23 @@ const App: React.FC = () => {
     setCustomPrompts(prompts);
   };
 
-  const handleRandomSelect = (phrases: string[]) => {
-    // 分离自定义提示词和预设提示词
-    const allPresetPhrases = new Set<string>();
-    promptData.categories.forEach(category => {
-      category.subCategories.forEach(subCategory => {
-        subCategory.phrases.forEach(phrase => {
-          allPresetPhrases.add(phrase);
-        });
-      });
-    });
+  // const handleRandomSelect = (phrases: string[]) => {
+  //   // 分离自定义提示词和预设提示词
+  //   const allPresetPhrases = new Set<string>();
+  //   promptData.categories.forEach(category => {
+  //     category.subCategories.forEach(subCategory => {
+  //       subCategory.phrases.forEach(phrase => {
+  //         allPresetPhrases.add(phrase);
+  //       });
+  //     });
+  //   });
 
-    const customPrompts = phrases.filter(phrase => !allPresetPhrases.has(phrase));
-    const presetPhrases = phrases.filter(phrase => allPresetPhrases.has(phrase));
+  //   const customPrompts = phrases.filter(phrase => !allPresetPhrases.has(phrase));
+  //   const presetPhrases = phrases.filter(phrase => allPresetPhrases.has(phrase));
 
-    setCustomPrompts(customPrompts);
-    setSelectedPhrases(new Set(presetPhrases));
-  };
+  //   setCustomPrompts(customPrompts);
+  //   setSelectedPhrases(new Set(presetPhrases));
+  // };
 
   const handleCopyAll = () => {
     setShowCopySuccess(true);
@@ -153,10 +153,10 @@ const App: React.FC = () => {
               </div>
             )}
             <div className="flex items-center justify-center space-x-2">
-              <RandomPromptSelector
+              {/* <RandomPromptSelector
                 promptData={promptData}
                 onRandomSelect={handleRandomSelect}
-              />
+              /> */}
               <FavoritesManager
                 selectedPhrases={allPromptsArray}
                 onLoadFavorite={handleLoadFavorite}
@@ -177,10 +177,10 @@ const App: React.FC = () => {
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <RandomPromptSelector
+              {/* <RandomPromptSelector
                 promptData={promptData}
                 onRandomSelect={handleRandomSelect}
-              />
+              /> */}
               <FavoritesManager
                 selectedPhrases={allPromptsArray}
                 onLoadFavorite={handleLoadFavorite}
