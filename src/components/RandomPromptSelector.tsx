@@ -161,19 +161,21 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
 
       {/* 随机选择设置模态框 */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold">随机选择设置</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[95vh] sm:max-h-[80vh] overflow-hidden flex flex-col">
+            {/* 固定头部 */}
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b flex-shrink-0">
+              <h3 className="text-base sm:text-lg font-semibold">随机选择设置</h3>
               <button
                 onClick={() => setShowModal(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 p-1"
               >
                 <X size={20} />
               </button>
             </div>
 
-            <div className="p-4 space-y-4">
+            {/* 可滚动内容区域 */}
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
               {/* 总数量设置 */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">
@@ -192,31 +194,41 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
               {/* 分类权重设置 */}
               <div className="space-y-3">
                 <label className="block text-sm font-medium text-gray-700">
-                  分类权重设置 (权重越高，该分类选择的提示词越多)
+                  分类权重设置
                 </label>
+                <div className="text-xs text-gray-500 mb-3">
+                  权重越高，该分类选择的提示词越多
+                </div>
                 {promptData.categories.map((category, index) => (
-                  <div key={category.mainCategory} className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium text-gray-800 truncate">
-                        {category.mainCategory}
+                  <div key={category.mainCategory} className="bg-gray-50 p-3 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium text-gray-800 truncate">
+                          {category.mainCategory}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          预计选择: {Math.floor((totalCount * categoryWeights[index]) / categoryWeights.reduce((sum, w) => sum + w, 0))} 个
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-500">
-                        预计选择: {Math.floor((totalCount * categoryWeights[index]) / categoryWeights.reduce((sum, w) => sum + w, 0))} 个
+                      <div className="flex items-center space-x-2 ml-3">
+                        <input
+                          type="number"
+                          min="0"
+                          max="5"
+                          value={categoryWeights[index]}
+                          onChange={(e) => handleWeightChange(index, parseInt(e.target.value) || 0)}
+                          className="w-14 sm:w-16 px-2 py-1 border border-gray-300 rounded text-center focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                        />
+                        {index === categoryWeights.length - 1 && (
+                          <span className="text-xs text-primary-600 font-medium hidden sm:inline">推荐</span>
+                        )}
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2 ml-4">
-                      <input
-                        type="number"
-                        min="0"
-                        max="5"
-                        value={categoryWeights[index]}
-                        onChange={(e) => handleWeightChange(index, parseInt(e.target.value) || 0)}
-                        className="w-16 px-2 py-1 border border-gray-300 rounded text-center focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      />
-                      {index === categoryWeights.length - 1 && (
-                        <span className="text-xs text-primary-600 font-medium">推荐</span>
-                      )}
-                    </div>
+                    {index === categoryWeights.length - 1 && (
+                      <div className="text-xs text-primary-600 font-medium sm:hidden">
+                        推荐设置
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -233,22 +245,23 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                 </div>
               </div>
 
-              {/* 操作按钮 */}
-              <div className="flex gap-2 pt-2">
-                <button
-                  onClick={handleRandomSelect}
-                  className="flex-1 btn-primary flex items-center justify-center gap-2"
-                >
-                  <Shuffle size={16} />
-                  开始随机选择
-                </button>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800"
-                >
-                  取消
-                </button>
-              </div>
+            </div>
+
+            {/* 固定底部操作按钮 */}
+            <div className="flex gap-2 p-3 sm:p-4 border-t bg-gray-50 flex-shrink-0">
+              <button
+                onClick={handleRandomSelect}
+                className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm sm:text-base"
+              >
+                <Shuffle size={16} />
+                开始随机选择
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-3 sm:px-4 py-2 text-gray-600 hover:text-gray-800 text-sm sm:text-base"
+              >
+                取消
+              </button>
             </div>
           </div>
         </div>
