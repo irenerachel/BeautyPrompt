@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>网站调试信息</h1>
+        
+        <div class="status info">
+            <strong>当前时间:</strong> <span id="currentTime"></span>
+        </div>
+        
+        <div class="status success">
+            <strong>✅ 静态文件加载正常</strong><br>
+            这个页面可以正常显示，说明Netlify部署和静态文件服务正常。
+        </div>
+        
+        <div class="status info">
+            <strong>🔍 检查项目:</strong><br>
+            • 静态HTML文件: ✅ 正常<br>
+            • CSS样式: ✅ 正常<br>
+            • JavaScript: 待检查<br>
+            • React应用: 待检查
+        </div>
+        
+        <div class="status error">
+            <strong>⚠️ 可能的问题:</strong><br>
+            • React应用加载失败<br>
+            • JavaScript文件路径错误<br>
+            • 数据文件过大导致加载超时<br>
+            • 浏览器兼容性问题
+        </div>
+        
+        <h2>测试链接</h2>
+        <p>
+            <a href="/" target="_blank">主应用</a> | 
+            <a href="/simple-test.html" target="_blank">简单测试</a> | 
+            <a href="/react-test.html" target="_blank">React测试</a>
+        </p>
+        
+        <h2>浏览器信息</h2>
+        <div id="browserInfo"></div>
+    </div>
+    
+    <script>
+        // 显示当前时间
+        document.getElementById('currentTime').textContent = new Date().toLocaleString('zh-CN');
+        
+        // 显示浏览器信息
+        const browserInfo = document.getElementById('browserInfo');
+        browserInfo.innerHTML = `
+            <strong>User Agent:</strong> ${navigator.userAgent}<br>
+            <strong>语言:</strong> ${navigator.language}<br>
+            <strong>在线状态:</strong> ${navigator.onLine ? '在线' : '离线'}<br>
+            <strong>屏幕分辨率:</strong> ${screen.width}x${screen.height}<br>
+            <strong>视口大小:</strong> ${window.innerWidth}x${window.innerHeight}
+        `;
+        
+        // 测试JavaScript功能
+        console.log('调试页面JavaScript运行正常');
+        
+        // 测试网络请求
+        fetch('/assets/index-b233e54f.js')
+            .then(response => {
+                if (response.ok) {
+                    console.log('✅ 主JS文件可访问');
+                } else {
+                    console.log('❌ 主JS文件访问失败:', response.status);
+                }
+            })
+            .catch(error => {
+                console.log('❌ 网络请求失败:', error);
+            });
+    </script>
+</body>
+</html>
