@@ -161,8 +161,8 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
 
       {/* 随机选择设置模态框 */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-1 sm:p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[98vh] sm:max-h-[80vh] overflow-hidden flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[95vh] sm:max-h-[85vh] overflow-hidden flex flex-col">
             {/* 固定头部 */}
             <div className="flex items-center justify-between p-2 sm:p-4 border-b flex-shrink-0">
               <h3 className="text-sm sm:text-lg font-semibold">随机选择设置</h3>
@@ -175,7 +175,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
             </div>
 
             {/* 可滚动内容区域 */}
-            <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-2 sm:space-y-4">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 min-h-0">
               {/* 总数量设置 */}
               <div className="space-y-2">
                 <label className="block text-xs sm:text-sm font-medium text-gray-700">
@@ -268,18 +268,18 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
             </div>
 
             {/* 固定底部操作按钮 */}
-            <div className="flex gap-1 sm:gap-2 p-2 sm:p-4 border-t bg-gray-50 flex-shrink-0">
+            <div className="flex gap-2 sm:gap-3 p-3 sm:p-4 border-t bg-gray-50 flex-shrink-0">
               <button
                 onClick={handleRandomSelect}
-                className="flex-1 btn-primary flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm py-2"
+                className="flex-1 btn-primary flex items-center justify-center gap-1 sm:gap-2 text-sm py-3 sm:py-2"
               >
-                <Shuffle size={14} />
+                <Shuffle size={16} />
                 <span className="hidden sm:inline">开始随机选择</span>
                 <span className="sm:hidden">随机选择</span>
               </button>
               <button
                 onClick={() => setShowModal(false)}
-                className="px-2 sm:px-4 py-2 text-gray-600 hover:text-gray-800 text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-3 sm:py-2 text-gray-600 hover:text-gray-800 text-sm"
               >
                 取消
               </button>
