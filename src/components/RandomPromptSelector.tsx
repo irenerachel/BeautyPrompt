@@ -161,8 +161,9 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
 
       {/* 随机选择设置模态框 */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-1 sm:p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full h-[95vh] sm:h-auto sm:max-h-[85vh] overflow-hidden flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 overflow-y-auto">
+          <div className="min-h-full flex items-start sm:items-center justify-center p-1 sm:p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-md w-full my-2 sm:my-4 flex flex-col max-h-[calc(100vh-1rem)] sm:max-h-[90vh]">
             {/* 固定头部 */}
             <div className="flex items-center justify-between p-2 sm:p-4 border-b flex-shrink-0">
               <h3 className="text-sm sm:text-lg font-semibold">随机选择设置</h3>
@@ -175,27 +176,27 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
             </div>
 
             {/* 可滚动内容区域 */}
-            <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-2 sm:space-y-4 min-h-0 scrollbar-thin mobile-scroll">
+            <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-1 sm:space-y-3 min-h-0">
               {/* 总数量设置 */}
-              <div className="space-y-2">
-                <label className="block text-xs sm:text-sm font-medium text-gray-700">
+              <div className="space-y-1">
+                <label className="block text-xs font-medium text-gray-700">
                   总选择数量
                 </label>
-                <div className="flex items-center justify-center space-x-3">
+                <div className="flex items-center justify-center space-x-2">
                   <button
                     onClick={() => setTotalCount(Math.max(1, totalCount - 1))}
                     disabled={totalCount <= 1}
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
                   >
                     −
                   </button>
-                  <div className="flex items-center justify-center w-16 h-8 bg-gray-100 rounded-lg text-sm font-medium">
+                  <div className="flex items-center justify-center w-12 h-6 bg-gray-100 rounded text-xs font-medium">
                     {totalCount}
                   </div>
                   <button
                     onClick={() => setTotalCount(Math.min(30, totalCount + 1))}
                     disabled={totalCount >= 30}
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
                   >
                     +
                   </button>
@@ -211,31 +212,31 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                   权重越高，该分类选择的提示词越多
                 </div>
                 {promptData.categories.map((category, index) => (
-                  <div key={category.mainCategory} className="bg-gray-50 p-2 rounded-lg">
+                  <div key={category.mainCategory} className="bg-gray-50 p-2 rounded">
                     <div className="flex items-center justify-between">
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-medium text-gray-800 truncate">
                           {category.mainCategory}
                         </div>
                         <div className="text-xs text-gray-500">
-                          预计: {Math.floor((totalCount * categoryWeights[index]) / categoryWeights.reduce((sum, w) => sum + w, 0))} 个
+                          {Math.floor((totalCount * categoryWeights[index]) / categoryWeights.reduce((sum, w) => sum + w, 0))} 个
                         </div>
                       </div>
                       <div className="flex items-center space-x-1 ml-2">
                         <button
                           onClick={() => handleWeightChange(index, Math.max(0, categoryWeights[index] - 1))}
                           disabled={categoryWeights[index] <= 0}
-                          className="flex items-center justify-center w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
+                          className="flex items-center justify-center w-4 h-4 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
                         >
                           −
                         </button>
-                        <div className="flex items-center justify-center w-6 h-5 bg-white border border-gray-300 rounded text-xs font-medium">
+                        <div className="flex items-center justify-center w-5 h-4 bg-white border border-gray-300 rounded text-xs font-medium">
                           {categoryWeights[index]}
                         </div>
                         <button
                           onClick={() => handleWeightChange(index, Math.min(5, categoryWeights[index] + 1))}
                           disabled={categoryWeights[index] >= 5}
-                          className="flex items-center justify-center w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
+                          className="flex items-center justify-center w-4 h-4 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
                         >
                           +
                         </button>
@@ -267,6 +268,7 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
               >
                 取消
               </button>
+            </div>
             </div>
           </div>
         </div>
