@@ -253,17 +253,6 @@ const RandomPromptSelector: React.FC<RandomPromptSelectorProps> = ({
                 ))}
               </div>
 
-              {/* 预览 */}
-              <div className="bg-gray-50 p-2 sm:p-3 rounded-lg">
-                <div className="text-xs sm:text-sm font-medium text-gray-700 mb-1">选择预览:</div>
-                <div className="text-xs text-gray-600 space-y-0.5">
-                  {calculateCategoryCounts().map((count, index) => (
-                    <div key={index} className="truncate">
-                      {promptData.categories[index].mainCategory}: {count} 个
-                    </div>
-                  ))}
-                </div>
-              </div>
 
             </div>
 
